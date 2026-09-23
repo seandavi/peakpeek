@@ -338,15 +338,15 @@ Spec: §3.1, §4. **Status:** Done — orchestrator, for Sean Davis (not yet rev
 
 ### Issue 2: Reading files and URLs
 
-Spec: §4 (`read.js`), §5 (the first five rows). **Status:** open
+Spec: §4 (`read.js`), §5 (the first five rows). **Status:** Done — orchestrator, for Sean Davis (not yet reviewed by him)
 
-- [ ] `PeakPeek.readFile` and `PeakPeek.readURL` return the file's text
-- [ ] Gzip detected by the bytes `1f 8b`, not the file name
-- [ ] Multi-member gzip (`bgzip`) gives an error saying so, never a partial file
-- [ ] A server that doesn't allow the fetch (CORS) gives §5's plain message
-- [ ] An HTML page instead of a peak file gives "this is a web page, not a peak file"
-- [ ] Tests for gzip, plain text, bgzip and HTML, built from bytes in the test (no network)
-- [ ] Checked by hand, in a real browser: one ENCODE URL and one raw GitHub URL load; a
+- [x] `PeakPeek.readFile` and `PeakPeek.readURL` return the file's text
+- [x] Gzip detected by the bytes `1f 8b`, not the file name
+- [x] Multi-member gzip (`bgzip`) gives an error saying so, never a partial file
+- [x] A server that doesn't allow the fetch (CORS) gives §5's plain message
+- [x] An HTML page instead of a peak file gives "this is a web page, not a peak file"
+- [x] Tests for gzip, plain text, bgzip and HTML, built from bytes in the test (no network)
+- [x] Checked by hand, in a real browser: one ENCODE URL and one raw GitHub URL load; a
       Zenodo URL gives the CORS message. Record which browser
 
 ### Issue 3: Parsing
