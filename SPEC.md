@@ -377,15 +377,15 @@ Spec: §3.2, §4 (`stats.js`), §6 Q3, Q4, Q6, Q11. **Status:** Done — orchest
 
 ### Issue 5: Charts
 
-Spec: §3.2, §3.3, §4 (`charts.js`), §6 Q6, Q9. **Status:** open
+Spec: §3.2, §3.3, §4 (`charts.js`), §6 Q6, Q9. **Status:** Done — orchestrator, for Sean Davis (not yet reviewed by him)
 
-- [ ] `PeakPeek.histogramSVG` and `PeakPeek.chromBarsSVG` return standalone SVG text
-- [ ] Several files share axes and have a legend
-- [ ] Axis labels say what's counted, and the width axis says it's log-scaled
-- [ ] Readable with colour blindness (for example, the Okabe–Ito palette)
-- [ ] Tests check the SVG parses, and that a file with one peak or one chromosome doesn't
+- [x] `PeakPeek.histogramSVG` and `PeakPeek.chromBarsSVG` return standalone SVG text
+- [x] Several files share axes and have a legend
+- [x] Axis labels say what's counted, and the width axis says it's log-scaled
+- [x] Readable with colour blindness (for example, the Okabe–Ito palette)
+- [x] Tests check the SVG parses, and that a file with one peak or one chromosome doesn't
       break it
-- [ ] Looked at by eye, in `test.html` or a scratch page, with the fixture and one real file
+- [x] Looked at by eye, in `test.html` or a scratch page, with the fixture and one real file
 
 ### Issue 6: Wiring it together
 
