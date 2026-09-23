@@ -97,3 +97,25 @@ wrote §2's table. Left unticked rather than faked.
 up the spec and reviewing took far longer, which is the point, and the thing to budget
 for. Follow-ups: the card shows chromosome style as `chr1` rather than "with chr"; the
 side-by-side view sits below every card.
+
+---
+
+## Entry 4 — A second build, in one prompt, for comparison
+
+**Asked** — *SD*: make the workshop exercise a one-shot build.
+
+**Orchestrator did** — Gave one fresh agent the workshop's SPEC.md in an empty folder and
+the one-prompt build from the exercise. Folded what it found back into this spec.
+
+**Checked how** — *Orchestrator*: it took 14.5 minutes; its `test.html` passes 62 of 62;
+the fixture and CTCF through its page match §2, in Chrome 152. `sort | uniq -d` on CTCF:
+0 identical lines, 1 pair with the same chromosome, start and end.
+
+**Confidently wrong** — *Orchestrator*: SPEC §2 said CTCF has "an exact duplicate line".
+It has a duplicate *peak*: same coordinates, different scores. Also, "overlapping
+peaks" and the side-by-side axis were never defined, and the two builds chose
+differently (CTCF overlaps: 1,763 against an earlier peak vs 3,457 against any other).
+The spec now defines both as this build does. ADR-0003 has a correction note.
+
+**Keep** — A second independent build is a cheap test of a spec: every place the two
+disagree is a sentence the spec didn't write.

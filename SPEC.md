@@ -55,7 +55,7 @@ linked from [the other exercise's spec](../peak-overlap/SPEC.md#reference-data).
 **The right answers** for the reference data, worked out with `awk`, Python and `bedtools`,
 independently of any app (§7, test 6):
 
-| File | Peaks | Min | Median | Mean | Max | Sum of widths | Merged bp | Chromosomes | Peaks off the main chromosomes | Exact duplicates |
+| File | Peaks | Min | Median | Mean | Max | Sum of widths | Merged bp | Chromosomes | Peaks off the main chromosomes | Duplicates |
 |---|---|---|---|---|---|---|---|---|---|---|
 | H3K4me3 | 25,099 | 160 | 629 | 768 | 12,358 | 19,267,844 | 19,267,844 | 24 | 6 | 0 |
 | H3K36me3 | 91,474 | 95 | 205 | 262 | 7,445 | 23,997,445 | 23,997,445 | 22 | 1 | 0 |
@@ -72,7 +72,8 @@ Three things in that table are the reason it exists:
 
 - **CTCF and DNase have overlapping peaks.** The sum of widths and the merged coverage
   differ. "How much genome do these peaks cover?" has two answers (Q4).
-- **CTCF has an exact duplicate line.** Count it or not (Q3)?
+- **CTCF has one duplicate peak**: the same chromosome, start and end as another, but not
+  an identical line (the scores differ). Count it or not (Q3)?
 - **The Vahedi CSV doesn't say which coordinate system it uses.** Every width moves by one
   depending on your answer (Q2).
 
@@ -106,7 +107,13 @@ can open the file and look.
 With two or more files: one table, a row per file and the §3.2 numbers as columns, and
 the histograms and per-chromosome charts drawn on shared axes so they can be compared
 by eye. Chromosomes are aligned by name after removing any `chr` prefix, so a `1` file
-and a `chr1` file line up (§6, Q7).
+and a `chr1` file line up (§6, Q7). The charts show **each file's share of its own
+peaks**, not counts: on a count axis a 9-peak file next to a 20,000-peak file is
+invisible.
+
+**Overlapping peaks** (in Problems) means peaks that overlap at least one other peak in
+the same file; peaks that only touch don't count, and both copies of a duplicate do. On
+the fixture that's 3 (`a`, `b` and the second `a`); on CTCF, 3,457.
 
 ### 3.4 Output
 
@@ -230,7 +237,7 @@ defaults are **suggestions**.
 |---|---|---|
 | Q1 | Is a zero-width peak (`end = start`) rejected, or kept? BED allows it for insertions. | Reject, with the reason "zero width" |
 | Q2 | Are CSV/TSV coordinates 0-based or 1-based? | 0-based, with a toggle, and the choice shown on the card |
-| Q3 | Are exact duplicate lines counted, dropped, or counted and flagged? | Counted and flagged |
+| Q3 | Are duplicate peaks (same chromosome, start and end) counted, dropped, or counted and flagged? | Counted and flagged |
 | Q4 | "Coverage": the sum of widths, merged bp, or both? | Both, clearly labelled |
 | Q5 | Which columns can name the chromosome, start and end in a CSV? | `chr`, `chrom`, `chromosome`, `seqnames`; `start`, `chromStart`; `end`, `chromEnd`; any case |
 | Q6 | Histogram bins: how many, and log or linear? | 30 log-spaced bins from the smallest to the largest width across all files |
@@ -307,11 +314,11 @@ The issues live **here, as checklists**, not on GitHub. Each one owns its files 
 touches nothing else, so issues 1–5 can be built **at the same time, by different agents,
 in the same folder**.
 
-**How to use them.** An agent building an issue *reports* which boxes it believes are
-met, and the evidence. **You** tick them after checking, change *Status* to
-`Done — <your name>`, and add a ledger entry. Agents don't edit this file: several of
-them work in the folder at once, and two editing the same file at the same moment can
-silently undo each other's changes. An issue isn't done until a person says so.
+**How to use them.** Built by **one agent**, it ticks the boxes as it goes and you check
+them. Built by **several at once**, each agent *reports* which boxes it believes are met,
+and **you** tick them: two agents editing this file at the same moment can silently undo
+each other's changes. Either way, *Status* says `Done — <your name>` only after a person
+has checked, with a ledger entry. An issue isn't done until a person says so.
 
 | # | Issue | Owns | Needs |
 |---|---|---|---|
