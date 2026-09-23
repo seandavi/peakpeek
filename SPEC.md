@@ -363,17 +363,17 @@ Spec: §2, §5 (header lines onwards), §6 Q1–Q3, Q5. **Status:** Done — orc
 
 ### Issue 4: Statistics
 
-Spec: §3.2, §4 (`stats.js`), §6 Q3, Q4, Q6, Q11. **Status:** open
+Spec: §3.2, §4 (`stats.js`), §6 Q3, Q4, Q6, Q11. **Status:** Done — orchestrator, for Sean Davis (not yet reviewed by him)
 
-- [ ] `PeakPeek.summarise` returns the §4 shape
-- [ ] Median of an even count is the mean of the middle two
-- [ ] Merged bp merges overlapping *and* touching peaks, per chromosome
-- [ ] `PeakPeek.naturalChromOrder` puts `chr2` before `chr10`, and `chrX, chrY, chrM` after
+- [x] `PeakPeek.summarise` returns the §4 shape
+- [x] Median of an even count is the mean of the middle two
+- [x] Merged bp merges overlapping *and* touching peaks, per chromosome
+- [x] `PeakPeek.naturalChromOrder` puts `chr2` before `chr10`, and `chrX, chrY, chrM` after
       the numbers, with or without `chr`
-- [ ] narrowPeak `-1` values are left out of score ranges
-- [ ] **Every fixture number in `PeakPeek.EXPECTED` matches**
-- [ ] `PeakPeek.logBins` gives n + 1 increasing edges; shared bins give comparable histograms
-- [ ] Timed on 100,000 random peaks: well under a second
+- [x] narrowPeak `-1` values are left out of score ranges
+- [x] **Every fixture number in `PeakPeek.EXPECTED` matches**
+- [x] `PeakPeek.logBins` gives n + 1 increasing edges; shared bins give comparable histograms
+- [x] Timed on 100,000 random peaks: well under a second
 
 ### Issue 5: Charts
 
