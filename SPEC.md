@@ -351,15 +351,15 @@ Spec: §4 (`read.js`), §5 (the first five rows). **Status:** Done — orchestra
 
 ### Issue 3: Parsing
 
-Spec: §2, §5 (header lines onwards), §6 Q1–Q3, Q5. **Status:** open
+Spec: §2, §5 (header lines onwards), §6 Q1–Q3, Q5. **Status:** Done — orchestrator, for Sean Davis (not yet reviewed by him)
 
-- [ ] `PeakPeek.parsePeaks` returns the §4 shape, coordinates 0-based half-open
-- [ ] Format detected: BED3, BED6, narrowPeak, broadPeak, CSV, TSV
-- [ ] `track`, `browser`, `#` and blank lines are skipped and counted
-- [ ] Rejections carry the 1-based line number and a reason
-- [ ] `1e+03` is accepted and `1.5e2` rejected
-- [ ] The CSV `oneBased` setting shifts start by one; the default follows Q2
-- [ ] **The fixture's accepted, skipped and rejected lines match `PeakPeek.EXPECTED`**
+- [x] `PeakPeek.parsePeaks` returns the §4 shape, coordinates 0-based half-open
+- [x] Format detected: BED3, BED6, narrowPeak, broadPeak, CSV, TSV
+- [x] `track`, `browser`, `#` and blank lines are skipped and counted
+- [x] Rejections carry the 1-based line number and a reason
+- [x] `1e+03` is accepted and `1.5e2` rejected
+- [x] The CSV `oneBased` setting shifts start by one; the default follows Q2
+- [x] **The fixture's accepted, skipped and rejected lines match `PeakPeek.EXPECTED`**
 
 ### Issue 4: Statistics
 
