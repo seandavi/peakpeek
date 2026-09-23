@@ -6,7 +6,7 @@
 - Edit only the files your issue owns (SPEC.md §8). If you need another, stop and ask.
 - The answers in examples/fixture.js were written by a person. Never edit them to make a
   test pass: report the mismatch.
-- In SPEC.md, touch only your issue's checkboxes in §8, and its Status line up to
-  "Done — agent". Signing it off is the maintainer's.
+- Don't edit SPEC.md, even your issue's checkboxes: several agents work in this folder
+  at once. Report which boxes you believe are met, and the maintainer ticks them.
 - Don't commit: the maintainer commits each issue after review.
 - Don't edit LEDGER.md: the maintainer writes it. Put what you checked in your report.
