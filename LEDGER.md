@@ -69,3 +69,31 @@ folder, commit named paths only.
 SPEC.md. Open questions for SD: R writes `1.5e+07`, which the spec rejects (proposed
 ADR: accept scientific notation that is a whole number); the shared 0–100 % histogram
 axis makes broad distributions look flat.
+
+---
+
+## Entry 3 — Issue 6 and acceptance (issue 7)
+
+**Asked** — *Orchestrator*: one worker wires the page (issue 6); then the orchestrator
+runs §7's acceptance tests itself.
+
+**Worker did** — `src/app.js` and `style.css`: cards with progress, editable labels,
+problems, rejected lines, shared bins, the 1-based toggle, side-by-side table and charts,
+CSV and SVG downloads.
+
+**Checked how** — *Orchestrator*, in Chrome 152 via `file://`:
+- `fixture.bed` through the file picker: 9 peaks, 4 skipped, rejected lines 11, 12, 13,
+  17 with the expected reasons, merged 1,611, 1 duplicate. Matches `PeakPeek.EXPECTED`.
+- All five §2 ENCODE files by URL together, plus the Vahedi CSV at both settings: every
+  number in the side-by-side table matches §2. Zenodo errors on its own card.
+- `bedtools merge` on CTCF and DNase: sum, merged bp and duplicates agree.
+- Not checked: that Chrome saves the downloads to disk (the worker checked their
+  contents); the five ENCODE files as uploads rather than URLs.
+
+**Confidently wrong** — Test 7 (predict before loading) can't be done by an agent that
+wrote §2's table. Left unticked rather than faked.
+
+**Keep** — Building 1–5 took the workers 3–8½ minutes each; issue 6 about as long. Setting
+up the spec and reviewing took far longer, which is the point, and the thing to budget
+for. Follow-ups: the card shows chromosome style as `chr1` rather than "with chr"; the
+side-by-side view sits below every card.

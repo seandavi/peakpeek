@@ -399,15 +399,17 @@ Spec: §3, §6 Q7, Q8, Q10. Needs 1–5. **Status:** Done — orchestrator, for 
 
 ### Issue 7: Acceptance
 
-Spec: §7. Needs 6. **Status:** open
+Spec: §7. Needs 6. **Status:** Done except Test 7 — orchestrator, for Sean Davis (not yet reviewed by him)
 
-- [ ] Test 2: double-click, both pages, all tests pass
-- [ ] Test 3: all five ENCODE files uploaded; every number matches §2
-- [ ] Test 4: the Vahedi CSV by URL, both coordinate settings, matches §2
-- [ ] Test 5: a Zenodo URL gives the CORS message
-- [ ] Test 6: one file cross-checked with a tool that isn't the page
-- [ ] Test 7: the prediction was written in the ledger *before* loading
-- [ ] `examples/fixture.bed` dropped into the page gives the numbers in `PeakPeek.EXPECTED`
+- [x] Test 2: double-click, both pages, all tests pass
+- [x] Test 3: all five ENCODE files uploaded; every number matches §2 (loaded by URL;
+      the upload path was checked with the fixture)
+- [x] Test 4: the Vahedi CSV by URL, both coordinate settings, matches §2
+- [x] Test 5: a Zenodo URL gives the CORS message
+- [x] Test 6: one file cross-checked with a tool that isn't the page
+- [ ] Test 7: the prediction was written in the ledger *before* loading — not possible
+      here: the orchestrator wrote §2's table, so any prediction would not be blind
+- [x] `examples/fixture.bed` dropped into the page gives the numbers in `PeakPeek.EXPECTED`
 
 ### Later, if you like
 
