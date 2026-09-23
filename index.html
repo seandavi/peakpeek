@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PeakPeek — a peak file at a glance</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="page-header">
+    <h1>PeakPeek</h1>
+    <p class="tagline">A peak file at a glance: how many peaks, how wide, on which chromosomes,
+      and what's wrong with it.</p>
+  </header>
+
+  <main>
+    <section id="load" class="load" aria-labelledby="load-heading">
+      <h2 id="load-heading">Add peak files</h2>
+      <p id="privacy-note" class="privacy-note">Files you add here never leave your computer.
+        A URL is fetched by your browser directly from where the file lives.</p>
+
+      <div class="load-inputs">
+        <div id="drop-zone" class="drop-zone">
+          <p class="drop-zone-text">Drop BED, narrowPeak, broadPeak, CSV or TSV files here
+            (plain or <code>.gz</code>)</p>
+          <input id="file-input" class="visually-hidden" type="file" multiple>
+          <label class="button" for="file-input">Choose files…</label>
+        </div>
+
+        <div class="url-box">
+          <label for="url-input">Or paste URLs, one per line</label>
+          <textarea id="url-input" rows="4" spellcheck="false" autocomplete="off"
+            placeholder="https://www.encodeproject.org/files/…/@@download/….bed.gz"></textarea>
+          <button id="url-load" class="button" type="button">Load URLs</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="file-cards" class="file-cards" aria-label="Files"></section>
+
+    <section id="side-by-side" class="side-by-side" aria-label="Side by side" hidden></section>
+  </main>
+
+  <script src="src/read.js"></script>
+  <script src="src/parse.js"></script>
+  <script src="src/stats.js"></script>
+  <script src="src/charts.js"></script>
+  <script src="src/app.js"></script>
+</body>
+</html>

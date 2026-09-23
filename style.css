@@ -1,0 +1,349 @@
+/* PeakPeek: one light theme, system fonts only, nothing fetched from the network. */
+
+:root {
+  color-scheme: light;
+  --text: #1c1f23;
+  --muted: #5b636d;
+  --background: #f6f7f9;
+  --surface: #ffffff;
+  --border: #d5d9df;
+  --accent: #0b5cad;
+  --accent-soft: #e6f0fa;
+  --ok: #1a7f37;
+  --error: #b42318;
+  --error-soft: #fdecea;
+  --warning: #8a5a00;
+  --warning-soft: #fff6dc;
+  --radius: 8px;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 1.5rem 1.25rem 3rem;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text);
+  background: var(--background);
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+  margin: 0 0 0.5rem;
+}
+
+h1 { font-size: 1.75rem; }
+h2 { font-size: 1.2rem; }
+h3 { font-size: 1.05rem; }
+
+p { margin: 0 0 0.75rem; }
+
+code,
+pre {
+  font-family: var(--mono);
+  font-size: 0.9em;
+}
+
+a { color: var(--accent); }
+
+.page-header {
+  margin-bottom: 1.5rem;
+}
+
+.tagline,
+.muted {
+  color: var(--muted);
+}
+
+/* Loading */
+
+.load {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.privacy-note {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.load-inputs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  gap: 1rem;
+}
+
+.drop-zone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  min-height: 10rem;
+  padding: 1.25rem;
+  text-align: center;
+  border: 2px dashed var(--border);
+  border-radius: var(--radius);
+  background: var(--background);
+}
+
+.drop-zone-text {
+  margin: 0;
+  color: var(--muted);
+}
+
+/* app.js adds this while files are dragged over the drop zone. */
+.drop-zone.is-dragover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.url-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.url-box label {
+  font-weight: 600;
+}
+
+textarea {
+  width: 100%;
+  min-height: 6.5rem;
+  resize: vertical;
+  padding: 0.5rem 0.6rem;
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.button,
+button {
+  display: inline-block;
+  align-self: flex-start;
+  padding: 0.45rem 1rem;
+  font: inherit;
+  font-weight: 600;
+  color: #fff;
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.drop-zone .button {
+  align-self: center;
+}
+
+.button:hover,
+button:hover {
+  filter: brightness(1.1);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+textarea:focus-visible,
+button:focus-visible,
+.visually-hidden:focus-visible + .button {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Results: filled in by app.js */
+
+.file-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 360px), 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.card,
+.side-by-side {
+  min-width: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+}
+
+.card.is-error {
+  border-color: var(--error);
+}
+
+.error {
+  color: var(--error);
+  background: var(--error-soft);
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+}
+
+.warning {
+  color: var(--warning);
+  background: var(--warning-soft);
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+}
+
+.table-scroll {
+  overflow-x: auto;
+}
+
+table {
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  font-variant-numeric: tabular-nums;
+}
+
+th,
+td {
+  padding: 0.3rem 0.6rem;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+
+td.number,
+th.number {
+  text-align: right;
+}
+
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+progress {
+  width: 100%;
+}
+
+/* test.html */
+
+.test-summary {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.is-passed > .test-mark,
+.test-summary.is-passed {
+  color: var(--ok);
+}
+
+.is-failed > .test-mark,
+.test-summary.is-failed {
+  color: var(--error);
+}
+
+.test-file {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.test-file h2 {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.25rem 0.75rem;
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 1rem;
+}
+
+.test-count {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 0.9rem;
+  font-weight: normal;
+  color: var(--muted);
+}
+
+.test-list {
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+}
+
+.test-list li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 0.5rem;
+  padding: 0.2rem 0;
+}
+
+.test-mark {
+  font-weight: 700;
+  width: 1rem;
+}
+
+.test-name {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.test-ms {
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.test-message {
+  flex-basis: 100%;
+  margin: 0.25rem 0 0.5rem 1.5rem;
+  padding: 0.5rem 0.75rem;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  color: var(--error);
+  background: var(--error-soft);
+  border-radius: 6px;
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 1rem 0.75rem 2rem;
+  }
+
+  .load,
+  .card,
+  .side-by-side,
+  .test-file {
+    padding: 0.9rem;
+  }
+
+  .test-message {
+    margin-left: 0;
+  }
+}

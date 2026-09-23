@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>tests: running…</title>
+  <link rel="stylesheet" href="style.css">
+
+  <script>
+    // Scripts that fail to load or throw while loading are recorded here, then reported as
+    // failed tests, so one broken file can't stop the rest from running. Chrome hides a
+    // file:// script's error message ("Script error."), so the file is found from
+    // document.currentScript and the details are left to the browser console.
+    const loadProblems = [];
+    function recordLoadProblem(event) {
+      const failedTag = event.target instanceof HTMLScriptElement ? event.target : null;
+      const script = failedTag || document.currentScript;
+      const file = script ? script.getAttribute("src") : "(unknown script)";
+      const message = failedTag
+        ? "couldn't be loaded: is the file there?"
+        : event.message && event.message !== "Script error."
+          ? "threw while loading: " + event.message
+          : "threw while loading; the browser console has the error";
+      loadProblems.push({ file, message });
+    }
+    window.addEventListener("error", recordLoadProblem, true);
+  </script>
+
+  <script src="src/read.js"></script>
+  <script src="src/parse.js"></script>
+  <script src="src/stats.js"></script>
+  <script src="src/charts.js"></script>
+  <script src="examples/fixture.js"></script>
+  <script src="tests/assert.js"></script>
+  <script src="tests/read.test.js"></script>
+  <script src="tests/parse.test.js"></script>
+  <script src="tests/stats.test.js"></script>
+  <script src="tests/charts.test.js"></script>
+</head>
+<body class="test-page">
+  <header class="page-header">
+    <h1>PeakPeek tests</h1>
+    <p id="test-summary" class="test-summary" aria-live="polite">Running…</p>
+  </header>
+  <main id="test-results"></main>
+
+  <script>
+    (async function () {
+      window.removeEventListener("error", recordLoadProblem, true);
+      window.PeakPeek = window.PeakPeek || {};
+      const PeakPeek = window.PeakPeek;
+      const testFiles = Array.from(
+        document.querySelectorAll('head script[src^="tests/"][src$=".test.js"]'),
+        (s) => s.getAttribute("src")
+      );
+
+      let outcome;
+      if (typeof PeakPeek.test === "function" && typeof PeakPeek.runTests === "function") {
+        for (const problem of loadProblems) {
+          PeakPeek.test(problem.file + " loads", () => {
+            const text = problem.file + " " + problem.message;
+            throw Object.assign(new Error(text), { stack: text }); // this page's stack is noise
+          });
+        }
+        try {
+          outcome = await PeakPeek.runTests();
+        } catch (error) {
+          outcome = failedRun("runTests() itself failed: " + (error && error.stack || error));
+        }
+      } else {
+        outcome = failedRun("tests/assert.js didn't provide PeakPeek.test and PeakPeek.runTests");
+      }
+
+      document.title = "tests: " + outcome.passed + " passed, " + outcome.failed + " failed";
+      PeakPeek.testResults = outcome;
+      show(outcome, testFiles);
+
+      function failedRun(message) {
+        const results = [{ name: "test harness", file: null, ok: false, message, ms: 0 }];
+        for (const problem of loadProblems) {
+          const text = problem.file + " " + problem.message;
+          results.push({ name: problem.file + " loads", file: null, ok: false, message: text, ms: 0 });
+        }
+        return { passed: 0, failed: results.length, results };
+      }
+
+      // Results grouped by file: problems not tied to one test file first, then each test
+      // file in load order, including files with no tests yet.
+      function show({ passed, failed, results }, files) {
+        const groups = new Map([[null, []]]);
+        for (const file of files) groups.set(file, []);
+        for (const result of results) {
+          const key = groups.has(result.file) ? result.file : null;
+          groups.get(key).push(result);
+        }
+
+        const summary = document.getElementById("test-summary");
+        summary.textContent = results.length === 0
+          ? "No tests registered yet: 0 passed, 0 failed."
+          : passed + " passed, " + failed + " failed, " + results.length + " in total.";
+        summary.classList.add(failed ? "is-failed" : "is-passed");
+
+        const main = document.getElementById("test-results");
+        for (const [file, fileResults] of groups) {
+          if (file === null && fileResults.length === 0) continue;
+          const section = element("section", "test-file");
+          const fileFailed = fileResults.filter((r) => !r.ok).length;
+          const heading = element("h2", null, file === null ? "Loading and harness" : file);
+          heading.append(element("span", "test-count", fileResults.length === 0
+            ? "no tests yet"
+            : (fileResults.length - fileFailed) + " passed, " + fileFailed + " failed"));
+          section.append(heading);
+
+          const list = element("ol", "test-list");
+          for (const r of fileResults) {
+            const item = element("li", r.ok ? "is-passed" : "is-failed");
+            item.append(
+              element("span", "test-mark", r.ok ? "✓" : "✗"),
+              element("span", "test-name", r.name),
+              element("span", "test-ms", r.ms + " ms")
+            );
+            if (!r.ok) item.append(element("pre", "test-message", r.message));
+            list.append(item);
+          }
+          if (fileResults.length) section.append(list);
+          main.append(section);
+        }
+      }
+
+      function element(tag, className, text) {
+        const node = document.createElement(tag);
+        if (className) node.className = className;
+        if (text !== undefined) node.textContent = text;
+        return node;
+      }
+    })();
+  </script>
+</body>
+</html>

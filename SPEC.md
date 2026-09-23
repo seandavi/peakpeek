@@ -325,16 +325,16 @@ silently undo each other's changes. An issue isn't done until a person says so.
 
 ### Issue 1: Page shell and test page
 
-Spec: §3.1, §4. **Status:** open
+Spec: §3.1, §4. **Status:** Done — orchestrator, for Sean Davis (not yet reviewed by him)
 
-- [ ] `index.html` has the drop zone, file picker (several files), URL box and an empty
+- [x] `index.html` has the drop zone, file picker (several files), URL box and an empty
       results area, and loads every `src/*.js` with classic `<script>` tags
-- [ ] `test.html` loads the same scripts, then every `tests/*.test.js`, and shows each
+- [x] `test.html` loads the same scripts, then every `tests/*.test.js`, and shows each
       test's pass/fail on the page, with a total
-- [ ] `tests/assert.js` gives §4's `PeakPeek.test`, `PeakPeek.assert` and
+- [x] `tests/assert.js` gives §4's `PeakPeek.test`, `PeakPeek.assert` and
       `PeakPeek.runTests`, with failure messages that show expected and actual
-- [ ] Both pages open by double-clicking, with no console errors
-- [ ] Works with only placeholder `src/` files, so issues 2–5 don't wait for it
+- [x] Both pages open by double-clicking, with no console errors
+- [x] Works with only placeholder `src/` files, so issues 2–5 don't wait for it
 
 ### Issue 2: Reading files and URLs
 
