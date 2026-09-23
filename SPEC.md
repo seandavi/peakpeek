@@ -307,10 +307,11 @@ The issues live **here, as checklists**, not on GitHub. Each one owns its files 
 touches nothing else, so issues 1–5 can be built **at the same time, by different agents,
 in the same folder**.
 
-**How to use them.** An agent building an issue ticks that issue's boxes as it goes, and
-changes nothing else in this file. It writes `Done — agent` on the *Status* line when it
-thinks it's finished. **You** change that to `Done — <your name>`, after checking it
-yourself, and add a ledger entry. An issue isn't done until a person says so.
+**How to use them.** An agent building an issue *reports* which boxes it believes are
+met, and the evidence. **You** tick them after checking, change *Status* to
+`Done — <your name>`, and add a ledger entry. Agents don't edit this file: several of
+them work in the folder at once, and two editing the same file at the same moment can
+silently undo each other's changes. An issue isn't done until a person says so.
 
 | # | Issue | Owns | Needs |
 |---|---|---|---|
@@ -423,7 +424,7 @@ decided, who did what, and how it was checked.
 - [ ] `README.md`: what this is, how to open it, and what state it's in
 - [ ] `SPEC.md`: this file, or your version of it
 - [ ] `adr/`: one record per §6 question, plus a `template.md`
-- [ ] §8's issues ticked as they're built, and each one's *Status* signed off by a person
+- [ ] §8's issues ticked and signed off by a person, as each one is checked
 - [ ] `AGENTS.md` (or `CLAUDE.md`): only what an agent can't work out by reading the folder
 - [ ] `LEDGER.md`: one entry per issue: asked, did, checked how, confidently wrong, keep
 - [ ] `examples/fixture.bed`, and its answers in `examples/fixture.js`, written by a person
