@@ -389,13 +389,13 @@ Spec: §3.2, §3.3, §4 (`charts.js`), §6 Q6, Q9. **Status:** Done — orchestr
 
 ### Issue 6: Wiring it together
 
-Spec: §3, §6 Q7, Q8, Q10. Needs 1–5. **Status:** open
+Spec: §3, §6 Q7, Q8, Q10. Needs 1–5. **Status:** Done — orchestrator, for Sean Davis (not yet reviewed by him)
 
-- [ ] Dropping files and pasting URLs both produce a card per file, with progress
-- [ ] Labels are editable; the side-by-side view appears with two or more files
-- [ ] Errors from issue 2 appear on that file's card; other files still load
-- [ ] The summary CSV and each chart's SVG download
-- [ ] Still opens by double-clicking, with no console errors
+- [x] Dropping files and pasting URLs both produce a card per file, with progress
+- [x] Labels are editable; the side-by-side view appears with two or more files
+- [x] Errors from issue 2 appear on that file's card; other files still load
+- [x] The summary CSV and each chart's SVG download
+- [x] Still opens by double-clicking, with no console errors
 
 ### Issue 7: Acceptance
 
