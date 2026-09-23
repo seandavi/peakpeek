@@ -320,7 +320,7 @@ silently undo each other's changes. An issue isn't done until a person says so.
 | 3 | Parsing | `src/parse.js`, `tests/parse.test.js` | — |
 | 4 | Statistics | `src/stats.js`, `tests/stats.test.js` | — |
 | 5 | Charts | `src/charts.js`, `tests/charts.test.js` | — |
-| 6 | Wiring it together | `src/app.js` | 1–5 |
+| 6 | Wiring it together | `src/app.js`, `style.css` (after issue 1) | 1–5 |
 | 7 | Acceptance | `LEDGER.md` | 6 |
 
 ### Issue 1: Page shell and test page
